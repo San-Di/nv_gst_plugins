@@ -15,9 +15,13 @@
 
 // inlcude all ds3d hpp header files
 #include <ds3d/common/common.h>
-#include <sys/time.h>
+// #include <sys/time.h>
 #include <chrono>
 
+
+#include <sys/timeb.h>
+#include <sys/types.h>
+#include <winsock2.h>
 namespace ds3d { namespace profiling {
 
 class FpsCalculation {
@@ -42,6 +46,15 @@ public:
         iSrc->second.push(now);
 
         return fps;
+    }
+
+    
+    int gettimeofday(struct timeval* t,void* timezone)
+    {       struct _timeb timebuffer;
+            _ftime( &timebuffer );
+            t->tv_sec=timebuffer.time;
+            t->tv_usec=1000*timebuffer.millitm;
+            return 0;
     }
 
 private:

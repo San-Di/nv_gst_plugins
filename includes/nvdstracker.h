@@ -29,7 +29,7 @@
 #define _NVMOTRACKER_H_
 
 #include <stdint.h>
-#include <time.h>
+#include <sys/time.h>
 
 #include "nvbufsurface.h"
 #include "nvds_tracker_meta.h"
